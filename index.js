@@ -2,8 +2,9 @@ var Botkit = require('botkit');
 var Server = require('socket.io');
 var redis = require("redis"),
     redisClient = redis.createClient({
-      host: '127.0.0.1',
-      port: 6379
+      host: 'ec2-54-83-204-56.compute-1.amazonaws.com',
+      port: 13299,
+      password: process.env.WALLE_BOT_TOKEN
     });
 
 var io = new Server(8888);
