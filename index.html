@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+</head>
+<body>
+
+<h1>Wall</h1>
+<div id="Show"></div>
+<script type="text/javascript">
+
+
+var socket = io('http://127.0.0.1:8888');
+
+
+ socket.on('wall', function (data) {
+
+
+   console.log(data);
+
+   if (data.show == 'message') {
+     document.getElementById('Show').innerHTML = data.message;
+   }
+
+ });
+
+</script>
+</body>
+</html>
