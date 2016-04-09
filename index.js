@@ -1,3 +1,5 @@
+var port = process.env.PORT || 8080;
+
 var Botkit = require('botkit');
 var Server = require('socket.io');
 var redis = require("redis"),
@@ -7,7 +9,7 @@ var redis = require("redis"),
       password: process.env.WALLE_REDIS_PW
     });
 
-var io = new Server(8888);
+var io = new Server(port);
 
 io.on('connection', function(socket){
 
