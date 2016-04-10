@@ -87,11 +87,23 @@ controller.hears(["img"],["direct_message","direct_mention"],function(bot,messag
 controller.hears(["twit"],["direct_message","direct_mention"],function(bot,message) {
   console.log(message)
   var twit = message.text.replace(/^twit /i, '')
-  redisClient.hset("wall", "show", "twitter");
-  redisClient.hset("wall", "twitter", twit);
-  bot.reply(message, "Now embedding twit \n " + twit);
-  redisClient.hgetall("wall", function(err, obj) {
-    io.emit('wall', obj);
-  })
+
+
+  http.get('https://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (res) {
+    console.log(`Got response: ${res.statusCode}`);
+
+    redisClient.hset("wall", "show", "twitter");
+    redisClient.hset("wall", "twitter", res.body);
+    bot.reply(message, "Now embedding twit \n " + twit);
+
+    redisClient.hgetall("wall", function(err, obj) {
+      io.emit('wall', obj);
+    })
+
+    // consume response body
+    res.resume();
+  }).on('error', function (e) {
+    console.log(`Got error: ${e.message}`);
+  });
 
 });
