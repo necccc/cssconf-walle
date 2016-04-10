@@ -5,7 +5,7 @@ node_js:
 cache:
   directories:
   - node_modules
-script: npm run deploy  
+script: npm run deploy
 deploy:
   provider: heroku
   api_key:
@@ -13,3 +13,7 @@ deploy:
   app: secure-bastion-78892
   on:
     repo: JSConfBp/jsconf-walle
+env:
+  global:
+  - GH_REF: github.com/JSConfBp/jsconf-walle.git
+  - secure: "bSxaS6Jh240hHpt+is6vUqIB35Wn/K+0J+LuOnABL/IHpC+mcVeBULyA0LIWHMUtsWFXxmjRRshZbywjg7FfVZFEKE92kA1fSGrqBold5EhfLppeIDufHd6xMQCCY2HvT7fm3k9zQeO/AzK549DfqPhubEb2VH9tE6w2RxfQ0+wEKwzsQZTHvaKPE4S/ulm/zqJzPjn/pkVQnl2vMMFKyQGobpkMdDZVA+AFnaNPPZjuu5t/SZpWvP/0E2t4Z36l6fXkYJTIkBtNfj9XL6uGfxmBdkUvn1gxNfb1GNLsdBLQPCXuNqQ1l8h0Ug8xPaNzEdqp8fy8cH63P4KBA5rviCr0RdT0mAzjMMjRiIhQLZfl2ZsWL89nvGMcGgc+50EHU48wQ8wzNXFHN50BwE2oOSzngyxBzdQFzc+lIZGqfkXxtiFGf7gtxHHuQRayYuc8yVvZvcbn5bN2xpiPhDEAw53vKFcvKGi9bj6D2N8vxz73UuE54QKj7eHH1ey0cTJNSeb5tUNICPjIgouo2nJXDqkdkW1ePSdmRgBuF8deqRQKX/mrAMaVgg97SvaM2B2YAjPiXtwztuWjDGli0TUTiLCsJIHi1WIhGXn6FvqXdWnExdKFQJWjuhw3evVEf/QuhJl27QNyIhX7hWT1Aiq9rF9fnKYKzyeULWU4IUewByo="
