@@ -10,8 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "exit 0",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
