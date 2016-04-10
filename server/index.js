@@ -86,7 +86,7 @@ controller.hears(["img"],["direct_message","direct_mention"],function(bot,messag
 
 controller.hears(["twit"],["direct_message","direct_mention"],function(bot,message) {
   console.log(message)
-  var twit = message.text.replace(/^twit /i, '')
+  var twit = message.text.replace(/^twit /i, '').replace(/[<>]/g,'')
 
 
   request('http://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (error, response, body) {
@@ -98,6 +98,10 @@ controller.hears(["twit"],["direct_message","direct_mention"],function(bot,messa
       redisClient.hgetall("wall", function(err, obj) {
         io.emit('wall', obj);
       })
+    }
+
+    if (error) {
+      console.log(error)
     }
   });
 
