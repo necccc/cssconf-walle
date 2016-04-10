@@ -1,0 +1,14 @@
+sudo: false
+language: node_js
+node_js:
+- iojs
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: l6dQTN9T0QAD3S4x3CoAMwQdfl9pKq10eD+uwdEjrV5k24NbC+VYi9dQzhox7wytYyWQ2XbYDRrFWkrMnndT3xpTBYzHQh/mYWyPbOc6dGMwRSXoeBU70hOHigwYeMdFSvJ3ais/bvhjSAA0OWIruXiEl4QtIOlrQZ1iqDTxmi+CWhyK1yWMBJu5ACzmxvLK0aYqj1NCfnSDineanNksxNlUvJPP/vN7eN0QEjRihIVyNth4T2enks7xlbxuo90WzaOIVY+DXDa/c7EcqdjUxKCspWYoyg7b+A1ITJlApVsbxeYGIvU1L31AaWvWx8snrHTTy5nlqw10ggIe/RnTf3CWyskWaQ/pxqi2SSaDcrlH89t95DbflOldDx0HjC9tA10aFzL9t6nipBmg6FMQbKiIEO5XEDnUxZS8Q+k1xWTr2MX9HQ7NWXNX4YYWzTL1gLECSPDByUlpmVqYcviQlnU4reEZtSYU2cqIOS5npESKtFE+MThLCPOuwpAI0CHxCXdoSFJijekWM8S/HjD6/ax5ZpcS5eZiQJdLBT7F64rEI0qco5eP1Su5bxSMSwbqDU12PZbDJ+/kGL7ireVXF/F+Z/CnJqxTNFNthdWEFqkZMMgf/a8+KtVVJZc1AZ36l+bpll98W4o7Pf4zBSUzxADOlDi8I2WPwgOWe5TeXBE=
+  app: secure-bastion-78892
+  on:
+    repo: JSConfBp/jsconf-walle
