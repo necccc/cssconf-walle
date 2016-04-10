@@ -10,11 +10,10 @@ socket.on('wall', function (data) {
 
   if (data.show == 'twitter') {
 
-    $.getJSON('https://api.twitter.com/1/statuses/oembed.json?url=' + data.message, function (response) {
-      console.log(response)
-    })
 
-    $('.content.twitter').innerHTML = data.message;
+
+
+    $('.content.twitter').html()// = data.twitter;
     $('body').className = 'show-twitter';
   }
 

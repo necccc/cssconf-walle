@@ -1,5 +1,5 @@
 var port = process.env.PORT || 8080;
-
+var http = require('http');
 var Botkit = require('botkit');
 var Server = require('socket.io');
 var redis = require("redis"),
