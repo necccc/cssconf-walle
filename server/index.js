@@ -39,7 +39,8 @@ controller.hears(["help"],["direct_message","direct_mention"],function(bot,messa
     "Hi! Allow me to control your conf wall with these messages: \n\t" +
     " - `default` resume to normal schedule display \n\t" +
     " - `say` send a message to the wall \n\t" +
-    " - `img` send an image url to the wall"
+    " - `img` send an image url to the wall \n\t" +
+    " - `twit` embed a tweet url to the wall"
   );
 });
 
@@ -77,6 +78,18 @@ controller.hears(["img"],["direct_message","direct_mention"],function(bot,messag
   redisClient.hset("wall", "show", "image");
   redisClient.hset("wall", "image", img);
   bot.reply(message, "Now showing image \n " + img);
+  redisClient.hgetall("wall", function(err, obj) {
+    io.emit('wall', obj);
+  })
+
+});
+
+controller.hears(["twit"],["direct_message","direct_mention"],function(bot,message) {
+  console.log(message)
+  var twit = message.text.replace(/^twit /i, '')
+  redisClient.hset("wall", "show", "twitter");
+  redisClient.hset("wall", "twitter", twit);
+  bot.reply(message, "Now embedding twit \n " + twit);
   redisClient.hgetall("wall", function(err, obj) {
     io.emit('wall', obj);
   })

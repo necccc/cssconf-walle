@@ -4,7 +4,18 @@ socket.on('wall', function (data) {
   console.log(data);
 
   if (data.show == 'message') {
-    document.querySelector('.content.message').innerHTML = data.message;
-    document.querySelector('body').className = 'show-message';
+    $('.content.message').innerHTML = data.message;
+    $('body').className = 'show-message';
   }
+
+  if (data.show == 'twitter') {
+
+    $.getJSON('https://api.twitter.com/1/statuses/oembed.json?url=' + data.message, function () {
+      
+    })
+
+    $('.content.twitter').innerHTML = data.message;
+    $('body').className = 'show-twitter';
+  }
+
 });
