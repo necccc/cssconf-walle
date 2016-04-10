@@ -1,5 +1,5 @@
 var port = process.env.PORT || 8080;
-var http = require('http');
+var request = require('request');
 var Botkit = require('botkit');
 var Server = require('socket.io');
 var redis = require("redis"),
@@ -89,21 +89,16 @@ controller.hears(["twit"],["direct_message","direct_mention"],function(bot,messa
   var twit = message.text.replace(/^twit /i, '')
 
 
-  http.get('https://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (res) {
-    console.log(`Got response: ${res.statusCode}`);
+  request('http://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (e, res, body) {
+    if (!error && response.statusCode == 200) {
+      redisClient.hset("wall", "show", "twitter");
+      redisClient.hset("wall", "twitter", body);
+      bot.reply(message, "Now embedding twit \n " + twit);
 
-    redisClient.hset("wall", "show", "twitter");
-    redisClient.hset("wall", "twitter", res.body);
-    bot.reply(message, "Now embedding twit \n " + twit);
-
-    redisClient.hgetall("wall", function(err, obj) {
-      io.emit('wall', obj);
-    })
-
-    // consume response body
-    res.resume();
-  }).on('error', function (e) {
-    console.log(`Got error: ${e.message}`);
+      redisClient.hgetall("wall", function(err, obj) {
+        io.emit('wall', obj);
+      })
+    }
   });
 
 });
