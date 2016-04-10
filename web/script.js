@@ -23,4 +23,10 @@ socket.on('wall', function (data) {
     $('body')[0].className = 'show-twitter';
   }
 
+
+  if (data.show == 'image') {
+    $('.content.image').html('<img src="' + data.image + '" />');
+    $('body')[0].className = 'show-image'
+  }
+
 });

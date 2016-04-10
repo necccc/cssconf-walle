@@ -74,7 +74,7 @@ controller.hears(["say"],["direct_message","direct_mention"],function(bot,messag
 
 controller.hears(["img"],["direct_message","direct_mention"],function(bot,message) {
   console.log(message)
-  var img = message.text.replace(/^img /i, '')
+  var img = message.text.replace(/^img /i, '').replace(/[<>]/g,'');
   redisClient.hset("wall", "show", "image");
   redisClient.hset("wall", "image", img);
   bot.reply(message, "Now showing image \n " + img);
