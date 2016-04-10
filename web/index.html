@@ -1,28 +1,23 @@
 <html>
-<head>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-</head>
-<body>
+  <head>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  </head>
+  <body>
 
-<h1>Wall</h1>
-<div id="Show"></div>
-<script type="text/javascript">
+    <h1>JSConf Bp Wall</h1>
 
+    <div id="Show"></div>
 
-var socket = io('https://secure-bastion-78892.herokuapp.com/');
+    <script type="text/javascript">
+      var socket = io('https://secure-bastion-78892.herokuapp.com/');
 
+      socket.on('wall', function (data) {
+        console.log(data);
 
- socket.on('wall', function (data) {
-
-
-   console.log(data);
-
-   if (data.show == 'message') {
-     document.getElementById('Show').innerHTML = data.message;
-   }
-
- });
-
-</script>
-</body>
+        if (data.show == 'message') {
+          document.getElementById('Show').innerHTML = data.message;
+        }
+      });
+    </script>
+  </body>
 </html>
