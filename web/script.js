@@ -6,7 +6,7 @@ socket.on('wall', function (data) {
   $('.content.twitter').html('')
 
   if (data.show == 'message') {
-    $('.content.message').text( data.message);
+    $('.content.message').text(data.message).fitText(1.2);
     $('body')[0].className = 'show-message'
   }
 
