@@ -89,7 +89,7 @@ controller.hears(["twit"],["direct_message","direct_mention"],function(bot,messa
   var twit = message.text.replace(/^twit /i, '').replace(/[<>]/g,'')
 
 
-  request('http://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (error, response, body) {
+  request('https://api.twitter.com/1/statuses/oembed.json?url=' + twit, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       redisClient.hset("wall", "show", "twitter");
       redisClient.hset("wall", "twitter", body);
