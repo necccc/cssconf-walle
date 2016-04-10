@@ -1,0 +1,47 @@
+html, body {
+  background: #2f81c3;
+  font-family:'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color:#fff;
+  font-weight:300;
+  margin: 0;
+  padding: 0;
+  position; relative;
+}
+
+div#Show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 66%;
+    font-weight: 600;
+}
+
+div#Sponsors {
+    background: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+}
+
+#Show .content {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 90%;
+  max-height: 90%;
+  transform: translate(-50%,-50%);
+  text-transform: uppercase;
+  font-size: 3em;
+}
+
+
+
+.show-message #Show .content.message { display: block; }
+.show-schedule #Show .content.message { display: block; }
+.show-tweet #Show .content.message { display: block; }
+.show-image #Show .content.message { display: block; }
