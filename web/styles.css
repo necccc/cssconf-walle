@@ -42,6 +42,6 @@ div#Sponsors {
 
 
 .show-message #Show .content.message { display: block; }
-.show-schedule #Show .content.message { display: block; }
-.show-tweet #Show .content.message { display: block; }
-.show-image #Show .content.message { display: block; }
+.show-schedule #Show .content.schedule { display: block; }
+.show-twitter #Show .content.twitter { display: block; }
+.show-image #Show .content.image { display: block; }
