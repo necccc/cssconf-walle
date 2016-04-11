@@ -105,8 +105,13 @@ controller.hears(["help"],["direct_message","direct_mention"],function(bot,messa
 
 controller.hears(["default"],["direct_message","direct_mention"],function(bot,message) {
   // todo
-  redisClient.hset("wall", "show", "shedule");
+  redisClient.hset("wall", "show", "schedule");
   redisClient.hgetall("wall", function(err, obj) {
+    var next = _.find(schedule, function(o) {
+      return o.start > new Date()
+    });
+
+    obj.next = next;
     io.emit('wall', obj);
   })
   bot.reply(message, 'Showing normal schedule');

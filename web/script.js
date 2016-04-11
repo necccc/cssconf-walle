@@ -29,4 +29,13 @@ socket.on('wall', function (data) {
     $('body')[0].className = 'show-image'
   }
 
+  if (data.show == 'schedule') {
+    $('.content.twitter').html('')
+
+    var who = data.next.summary,
+        what = data.next.description;
+
+    $('body')[0].className = 'show-schedule';
+  }
+
 });
