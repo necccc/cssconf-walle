@@ -9,7 +9,8 @@ var redis = require("redis"),
       port: 13299,
       password: process.env.WALLE_REDIS_PW
     });
-
+var controller = Botkit.slackbot();
+var io = new Server(port);
 
 ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
 
@@ -51,7 +52,7 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
 
 
 
-  var io = new Server(port);
+
 
   io.on('connection', function(socket){
     redisClient.hgetall("wall", function(err, obj) {
@@ -59,7 +60,7 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
     })
   });
 
-  var controller = Botkit.slackbot();
+
   var bot = controller.spawn({
     token: process.env.WALLE_BOT_TOKEN
   })
