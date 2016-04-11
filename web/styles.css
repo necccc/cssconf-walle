@@ -49,6 +49,32 @@ div#Sponsors {
   height: 100%;
 }
 
+#Show .content.schedule h1 {
+  position: relative;
+  font-size: 1.3em;
+  text-align: left;
+  line-height: 1.1em;
+}
+
+#Show .content.schedule h1 span em {
+  position: absolute;
+  font-size: .6em;
+  top: 0;
+  left: 0;
+  transform: translate(-60%, -80%);
+  font-weight: 400;
+}
+
+#Show .content.schedule h1 span {
+  font-weight: 200;
+  position: absolute;
+  font-size: .8em;
+  top: 0;
+  left: 0;
+  transform: translate(0, -120%);
+  text-align: left;
+}
+
 .show-message #Show .content.message { display: block; }
 .show-schedule #Show .content.schedule { display: block; }
 .show-twitter #Show .content.twitter { display: block; }

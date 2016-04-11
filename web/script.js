@@ -3,7 +3,7 @@ var socket = io('https://secure-bastion-78892.herokuapp.com/');
 socket.on('wall', function (data) {
   console.log(data);
 
-  $('.content.twitter').html('')
+  $('.content').html('');
 
   if (data.show == 'message') {
     $('.content.message').text(data.message).fitText(1.2);
@@ -11,7 +11,6 @@ socket.on('wall', function (data) {
   }
 
   if (data.show == 'twitter') {
-    $('.content.twitter').html('')
     var data= JSON.parse(data.twitter)
     twttr.widgets.createTweet(
       data.url.replace(/^.*status\//,''),
@@ -30,11 +29,10 @@ socket.on('wall', function (data) {
   }
 
   if (data.show == 'schedule') {
-    $('.content.twitter').html('')
-
     var who = data.next.summary,
         what = data.next.description;
 
+    $('.content.schedule').html('<h1><span><em>Up next: </em> ' + who + '</span>' + what + '</h1>');
     $('body')[0].className = 'show-schedule';
   }
 
