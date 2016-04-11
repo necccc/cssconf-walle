@@ -32,8 +32,8 @@ div#Sponsors {
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 90%;
-  
+
+
   text-align: center;
   max-width: 90%;
   max-height: 90%;
@@ -41,8 +41,13 @@ div#Sponsors {
   text-transform: uppercase;
   font-size: 3em;
 }
+#Show .content.message {
+  min-width: 90%;
+}
 
-
+#Show .content.image img {
+  height: 100%;
+}
 
 .show-message #Show .content.message { display: block; }
 .show-schedule #Show .content.schedule { display: block; }

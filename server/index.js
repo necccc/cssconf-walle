@@ -1,6 +1,7 @@
 var port = process.env.PORT || 8080;
 var request = require('request');
 var Botkit = require('botkit');
+var ical = require('ical');
 var Server = require('socket.io');
 var redis = require("redis"),
     redisClient = redis.createClient({
@@ -9,32 +10,73 @@ var redis = require("redis"),
       password: process.env.WALLE_REDIS_PW
     });
 
-var io = new Server(port);
 
-io.on('connection', function(socket){
+ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
 
-  redisClient.hgetall("wall", function(err, obj) {
-    io.emit('wall', obj);
+
+/**
+
+'tntgpvumh7a8pue94ie8d55kpo@google.com':
+  { type: 'VEVENT',
+    params: [],
+    start: { Mon, 11 Apr 2016 14:30:00 GMT tz: undefined },
+    end: { Mon, 11 Apr 2016 15:00:00 GMT tz: undefined },
+    dtstamp: '20160411T112215Z',
+    uid: 'tntgpvumh7a8pue94ie8d55kpo@google.com',
+    created: '20160410T154301Z',
+    description: 'The Formulartic Spectrum',
+    'last-modified': '20160410T154342Z',
+    location: '',
+    sequence: '1',
+    status: 'CONFIRMED',
+    summary: 'Suz Hinton',
+    transparency: 'OPAQUE' },
+ 'qkvrj1q9ntbonjo8rvukk7uf54@google.com':
+  { type: 'VEVENT',
+    params: [],
+    start: { Mon, 11 Apr 2016 14:00:00 GMT tz: undefined },
+    end: { Mon, 11 Apr 2016 14:30:00 GMT tz: undefined },
+    dtstamp: '20160411T112215Z',
+    uid: 'qkvrj1q9ntbonjo8rvukk7uf54@google.com',
+    created: '20160410T153802Z',
+    description: 'High Performance in the Critical Rendering Path',
+    'last-modified': '20160410T154322Z',
+    location: '',
+    sequence: '1',
+    status: 'CONFIRMED',
+    summary: 'Nicolás Bevacqua',
+    transparency: 'OPAQUE' } }
+
+    */
+
+
+
+  var io = new Server(port);
+
+  io.on('connection', function(socket){
+    redisClient.hgetall("wall", function(err, obj) {
+      io.emit('wall', obj);
+    })
+  });
+
+  var controller = Botkit.slackbot();
+  var bot = controller.spawn({
+    token: process.env.WALLE_BOT_TOKEN
   })
 
-});
+  bot.startRTM(function(err,bot,payload) {
+    if (err) {
+      throw new Error('Could not connect to Slack');
+    }
+  });
 
-var controller = Botkit.slackbot();
-var bot = controller.spawn({
-  token: process.env.WALLE_BOT_TOKEN
+
 })
 
-bot.startRTM(function(err,bot,payload) {
-  if (err) {
-    throw new Error('Could not connect to Slack');
-  }
-});
+
+
 
 controller.hears(["help"],["direct_message","direct_mention"],function(bot,message) {
-  // do something to respond to message
-  // all of the fields available in a normal Slack message object are available
-  // https://api.slack.com/events/message
-  console.log(message)
   bot.reply(message,
     "Hi! Allow me to control your conf wall with these messages: \n\t" +
     " - `default` resume to normal schedule display \n\t" +
@@ -45,35 +87,25 @@ controller.hears(["help"],["direct_message","direct_mention"],function(bot,messa
 });
 
 controller.hears(["default"],["direct_message","direct_mention"],function(bot,message) {
-  console.log(message)
-
+  // todo
   redisClient.hset("wall", "show", "shedule");
-
   redisClient.hgetall("wall", function(err, obj) {
     io.emit('wall', obj);
   })
-
-
   bot.reply(message, 'Showing normal schedule');
-
 });
 
 controller.hears(["say"],["direct_message","direct_mention"],function(bot,message) {
-  console.log(message)
-
   var msg = message.text.replace(/^say /i, '');
-
   redisClient.hset("wall", "show", "message");
   redisClient.hset("wall", "message", msg);
   bot.reply(message, "Now showing message \n > " + msg);
   redisClient.hgetall("wall", function(err, obj) {
     io.emit('wall', obj);
   })
-
 });
 
 controller.hears(["img"],["direct_message","direct_mention"],function(bot,message) {
-  console.log(message)
   var img = message.text.replace(/^img /i, '').replace(/[<>]/g,'');
   redisClient.hset("wall", "show", "image");
   redisClient.hset("wall", "image", img);
@@ -81,14 +113,10 @@ controller.hears(["img"],["direct_message","direct_mention"],function(bot,messag
   redisClient.hgetall("wall", function(err, obj) {
     io.emit('wall', obj);
   })
-
 });
 
 controller.hears(["twit"],["direct_message","direct_mention"],function(bot,message) {
-  console.log(message)
   var twit = message.text.replace(/^twit /i, '').replace(/[<>]/g,'')
-
-
   request('https://api.twitter.com/1/statuses/oembed.json?omit_script=true&url=' + twit, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       redisClient.hset("wall", "show", "twitter");
