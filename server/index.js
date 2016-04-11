@@ -1,5 +1,6 @@
 var port = process.env.PORT || 8080;
 var request = require('request');
+var _ = require('lodash');
 var Botkit = require('botkit');
 var ical = require('ical');
 var Server = require('socket.io');
@@ -12,7 +13,17 @@ var redis = require("redis"),
 var controller = Botkit.slackbot();
 var io = new Server(port);
 
+var schedule = [];
+
 ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
+
+
+  for (var i in data) {
+    schedule.push(data[i])
+  }
+
+  schedule = _.sortBy(schedule, ['start'])
+
 
 
 /**
@@ -48,7 +59,7 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
     summary: 'Nicolás Bevacqua',
     transparency: 'OPAQUE' } }
 
-    */
+*/
 
 
 
@@ -56,6 +67,11 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
 
   io.on('connection', function(socket){
     redisClient.hgetall("wall", function(err, obj) {
+      var next = _.find(schedule, function(o) {
+        return o.start > new Date()
+      });
+
+      obj.next = next;
       io.emit('wall', obj);
     })
   });
