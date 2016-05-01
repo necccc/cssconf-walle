@@ -67,6 +67,14 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
 
   io.on('connection', function(socket){
     redisClient.hgetall("wall", function(err, obj) {
+
+       if (err) throw err;
+       
+       if (!obj) {
+          redisClient.hset("wall", "message", "Hi Dave");
+          redisClient.hset("wall", "show", "message");
+       }
+      
       var next = _.find(schedule, function(o) {
         return o.start > new Date()
       });
