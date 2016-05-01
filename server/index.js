@@ -6,8 +6,8 @@ var ical = require('ical');
 var Server = require('socket.io');
 var redis = require("redis"),
     redisClient = redis.createClient({
-      host: 'ec2-54-83-204-56.compute-1.amazonaws.com',
-      port: 13299,
+      host: process.env.WALLE_REDIS_HOST,
+      port: process.env.WALLE_REDIS_PORT,
       password: process.env.WALLE_REDIS_PW
     });
 var controller = Botkit.slackbot();
