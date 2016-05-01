@@ -73,6 +73,10 @@ ical.fromURL(process.env.WALLE_ICAL_URL, {}, function(err, data) {
        if (!obj) {
           redisClient.hset("wall", "message", "Hi Dave");
           redisClient.hset("wall", "show", "message");
+          obj = {
+            message: "Hi Dave",
+            show: "message"
+          }
        }
       
       var next = _.find(schedule, function(o) {
