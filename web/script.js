@@ -1,4 +1,4 @@
-var socket = io('https://jsconfbp-walle.herokuapp.com/');
+var socket = io('https://cssconf-walle.herokuapp.com/');
 
 socket.on('wall', function (data) {
   console.log(data);
