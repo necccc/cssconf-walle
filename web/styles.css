@@ -18,6 +18,25 @@ div#Show {
     font-weight: 600;
 }
 
+div#Show svg.logo {
+  position: absolute;
+  bottom: 20px;
+  width: 10%;
+  right: 20px;
+  z-index: 5;
+}
+
+div#Show svg.triangles {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  left: 0px;
+  transform: translate(-25%, -30%);
+  z-index: 1;
+  opacity: .1;
+}
+
+
 div#Sponsors {
     background: #000;
     position: absolute;
@@ -32,7 +51,7 @@ div#Sponsors {
   position: absolute;
   top: 50%;
   left: 50%;
-
+  z-index: 10;
 
   text-align: center;
   max-width: 90%;
@@ -109,7 +128,7 @@ div#Sponsors div.gold-2 {
 }
 
 div#Sponsors div.supporters {
-  height: 24%;
+  height: 22%;
 }
 
 
