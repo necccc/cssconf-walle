@@ -131,7 +131,6 @@ div#Sponsors div.supporters {
   height: 22%;
 }
 
-
 div#Sponsors div.mozilla {
   background-image: url(sponsors/mozilla.png);
   animation-name: mozilla;
@@ -158,7 +157,7 @@ div#Sponsors div.gold-2 {
 }
 
 div#Sponsors div.supporters {
-  background-image: url(sponsors/supporters.png);
+  background-image: url(sponsors/supporters-css.png);
   animation-name: supporters;
 }
 
