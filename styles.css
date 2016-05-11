@@ -1,0 +1,282 @@
+html, body {
+  background: #1e1f1f;
+  font-family:'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color:#ce0023;
+  font-weight:300;
+  margin: 0;
+  padding: 0;
+  position; relative;
+}
+
+div#Show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 66%;
+    font-weight: 600;
+}
+
+div#Show svg.logo {
+  position: absolute;
+  bottom: 20px;
+  width: 10%;
+  right: 20px;
+  z-index: 5;
+}
+
+div#Show svg.triangles {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  left: 0px;
+  transform: translate(-25%, -30%);
+  z-index: 1;
+  opacity: .1;
+}
+
+div#Sponsors {
+    background: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+}
+
+#Show .content {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+
+  text-align: center;
+  max-width: 90%;
+  max-height: 90%;
+  transform: translate(-50%,-50%);
+  text-transform: uppercase;
+  font-size: 3em;
+}
+#Show .content.message {
+  min-width: 90%;
+}
+
+#Show .content.image img {
+  height: 100%;
+}
+
+#Show .content.schedule h1 {
+  position: relative;
+  font-size: 1.3em;
+  text-align: left;
+  line-height: 1.1em;
+}
+
+#Show .content.schedule h1 span em {
+  position: absolute;
+  font-size: .6em;
+  top: 0;
+  left: 0;
+  transform: translate(-60%, -80%);
+  font-weight: 400;
+}
+
+#Show .content.schedule h1 span {
+  font-weight: 200;
+  position: absolute;
+  font-size: .8em;
+  top: 0;
+  left: 0;
+  transform: translate(0, -120%);
+  text-align: left;
+}
+
+.show-message #Show .content.message { display: block; }
+.show-schedule #Show .content.schedule { display: block; }
+.show-twitter #Show .content.twitter { display: block; }
+.show-image #Show .content.image { display: block; }
+
+
+
+div#Sponsors div {
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  width: 90%;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out 22s;
+  animation-duration: 22s;
+}
+
+div#Sponsors div.mozilla,
+div#Sponsors div.zalando,
+div#Sponsors div.euedge {
+  height: 37%;
+}
+
+div#Sponsors div.gold-1,
+div#Sponsors div.gold-2 {
+  height: 40%;
+}
+
+div#Sponsors div.supporters {
+  height: 22%;
+}
+
+div#Sponsors div.mozilla {
+  background-image: url(sponsors/mozilla.png);
+  animation-name: mozilla;
+}
+
+div#Sponsors div.zalando {
+  background-image: url(sponsors/zalando.png);
+  animation-name: zalando;
+}
+
+div#Sponsors div.euedge {
+  background-image: url(sponsors/euedge.png);
+  animation-name: euedge;
+}
+
+div#Sponsors div.gold-1 {
+  background-image: url(sponsors/gold1.png);
+  animation-name: gold1;
+}
+
+div#Sponsors div.gold-2 {
+  background-image: url(sponsors/gold2.png);
+  animation-name: gold2;
+}
+
+div#Sponsors div.supporters {
+  background-image: url(sponsors/supporters-css.png);
+  animation-name: supporters;
+}
+
+@keyframes mozilla {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes euedge {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0;
+  }
+  19% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@keyframes zalando {
+  0% {
+    opacity: 0;
+  }
+  36% {
+    opacity: 0;
+  }
+  37% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes gold1 {
+  0% {
+    opacity: 0;
+  }
+  56% {
+    opacity: 0;
+  }
+  57% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  71% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes gold2 {
+  0% {
+    opacity: 0;
+  }
+  71% {
+    opacity: 0;
+  }
+  72% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  86% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes supporters {
+  0% {
+    opacity: 0;
+  }
+  86% {
+    opacity: 0;
+  }
+  87% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
