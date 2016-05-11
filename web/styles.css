@@ -1,12 +1,11 @@
 html, body {
-  background: #1e1f1f;
-  font-family:'Source Sans Pro', sans-serif;
+  background: linear-gradient(to bottom,#000ccb 0,#f20 100%);
+  font-family: 'Foundry Gridnik',sans-serif;
   -webkit-font-smoothing:antialiased;
-  color:#ce0023;
-  font-weight:300;
+  color: #fff;
   margin: 0;
   padding: 0;
-  position; relative;
+  position: relative;
 }
 
 div#Show {
@@ -19,7 +18,7 @@ div#Show {
 }
 
 div#Sponsors {
-    background: #000;
+    background: #1f1f1f;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -54,25 +53,30 @@ div#Sponsors {
   font-size: 1.3em;
   text-align: left;
   line-height: 1.1em;
+  font-family: Panton,sans-serif;
+  font-weight: 900;
 }
 
 #Show .content.schedule h1 span em {
   position: absolute;
+  font-family: 'Foundry Gridnik',sans-serif;
   font-size: .6em;
   top: 0;
   left: 0;
-  transform: translate(-60%, -80%);
+  transform: translate(-60%, -100%);
   font-weight: 400;
+  font-style: normal;
+  color: #fff;
 }
 
 #Show .content.schedule h1 span {
-  font-weight: 200;
   position: absolute;
   font-size: .8em;
   top: 0;
   left: 0;
-  transform: translate(0, -120%);
+  transform: translate(0, -100%);
   text-align: left;
+  color: #f4b423;
 }
 
 .show-message #Show .content.message { display: block; }
@@ -91,25 +95,23 @@ div#Sponsors div {
   top: 50%;
   transform: translate(-50%, -50%);
   height: 90%;
-  width: 90%;
+  width: 100%;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-out 22s;
+  animation-timing-function: ease-out;
   animation-duration: 22s;
 }
 
-div#Sponsors div.mozilla,
-div#Sponsors div.zalando,
-div#Sponsors div.euedge {
-  height: 37%;
-}
-
-div#Sponsors div.gold-1,
-div#Sponsors div.gold-2 {
+div#Sponsors .platinum {
   height: 40%;
 }
 
-div#Sponsors div.supporters {
-  height: 24%;
+div#Sponsors .gold-1,
+div#Sponsors .gold-2 {
+  height: 35%;
+}
+
+div#Sponsors .supporters {
+  height: 25%;
 }
 
 
@@ -123,18 +125,18 @@ div#Sponsors div.zalando {
   animation-name: zalando;
 }
 
-div#Sponsors div.euedge {
-  background-image: url(sponsors/euedge.png);
+div#Sponsors div.eu-edge {
+  background-image: url(sponsors/eu-edge.png);
   animation-name: euedge;
 }
 
 div#Sponsors div.gold-1 {
-  background-image: url(sponsors/gold1.png);
+  background-image: url(sponsors/gold-1.png);
   animation-name: gold1;
 }
 
 div#Sponsors div.gold-2 {
-  background-image: url(sponsors/gold2.png);
+  background-image: url(sponsors/gold-2.png);
   animation-name: gold2;
 }
 
@@ -180,7 +182,7 @@ div#Sponsors div.supporters {
   100% {
     opacity: 0;
   }
-  
+
 }
 
 @keyframes zalando {
