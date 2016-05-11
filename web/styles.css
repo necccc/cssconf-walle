@@ -36,7 +36,6 @@ div#Show svg.triangles {
   opacity: .1;
 }
 
-
 div#Sponsors {
     background: #000;
     position: absolute;
@@ -198,7 +197,7 @@ div#Sponsors div.supporters {
   100% {
     opacity: 0;
   }
-  
+
 }
 
 @keyframes zalando {
